@@ -1,0 +1,52 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="default">
+            <EntityType Name="CustomerType">
+                <Key>
+                    <PropertyRef Name="KUNNR"/>
+                </Key>
+                <Property Name="KUNNR" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="LAND1" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="35"/>
+                <Property Name="ORT01" Type="Edm.String" MaxLength="35"/>
+                <Property Name="PSTLZ" Type="Edm.String" MaxLength="10"/>
+                <Property Name="REGIO" Type="Edm.String" MaxLength="3"/>
+                <Property Name="TELF1" Type="Edm.String" MaxLength="16"/>
+                <Property Name="TELFX" Type="Edm.String" MaxLength="31"/>
+                <NavigationProperty Name="Items" Relationship="default.ItemsType" FromRole="CustomerPrincipal" ToRole="OrdersDependent"/>
+            </EntityType>
+            <EntityType Name="OrdersType">
+                <Key>
+                    <PropertyRef Name="ZBUKR"/>
+                    <PropertyRef Name="KUNNR"/>
+                    <PropertyRef Name="VBLNR"/>
+                </Key>
+                <Property Name="ZBUKR" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="KUNNR" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="VBLNR" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="RBETR" Type="Edm.Decimal" Precision="13" Scale="2"/>
+                <Property Name="WAERS" Type="Edm.String" MaxLength="5"/>
+                <Property Name="XREF1" Type="Edm.String" MaxLength="10"/>
+                <Property Name="GJAHR" Type="Edm.String" MaxLength="4"/>
+                <Property Name="AEDAT" Type="Edm.DateTime"/>
+            </EntityType>
+            <Association Name="ItemsType">
+                <End Type="default.CustomerType" Role="CustomerPrincipal" Multiplicity="1"/>
+                <End Type="default.OrdersType" Role="OrdersDependent" Multiplicity="*"/>
+            </Association>
+            <EntityContainer Name="v2" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Customer" EntityType="default.CustomerType"/>
+                <EntitySet Name="Orders" EntityType="default.OrdersType"/>
+                <AssociationSet Name="Items" Association="default.ItemsType">
+                    <End Role="CustomerPrincipal" EntitySet="Customer"/>
+                    <End Role="OrdersDependent" EntitySet="Orders"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

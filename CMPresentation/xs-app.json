@@ -1,0 +1,13 @@
+{
+	"welcomeFile": "index.html",
+	"authenticationMethod": "none",
+	"routes": [{
+		"source": "(.xsjs)",
+		"destination": "MSBusinessLogic_be",
+		"csrfProtection": false,
+		"authenticationType": "xsuaa"
+	}, {
+		"source": "/service.xsodata/",
+		"destination": "MSBusinessLogic_be"
+	}]
+}

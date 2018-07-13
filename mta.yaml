@@ -17,6 +17,17 @@ modules:
     requires:
       - name: CMData
       - name: hdi_CMData
+
+  - name: CMPresentation
+    type: html5
+    path: CMPresentation
+    requires:
+     - name: MSBusinessLogic_api
+       group: destinations
+       properties:
+          name: MSBusinessLogic_be
+          url: ~{url}
+
 resources:
   - name: hdi_CMData
     properties:
