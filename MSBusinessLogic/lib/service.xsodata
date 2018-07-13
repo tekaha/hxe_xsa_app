@@ -1,0 +1,6 @@
+service {
+	"hxe_xsa_app.CMData::CustomerDetails.Customer" as "Customer" navigates ("Items" as "Items");
+	"hxe_xsa_app.CMData::CustomerDetails.Orders" as "Orders";
+	association "Items" principal "Customer"("KUNNR") multiplicity "1"
+		dependent "Orders"("KUNNR") multiplicity "*";
+}

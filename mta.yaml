@@ -1,16 +1,24 @@
 ID: hxe_xsa_app
 _schema-version: '2.0'
 version: 0.0.1
-
 modules:
- - name: CMData
-   type: hdb
-   path: CMData
-   requires:
-    - name: hdi_CMData
-
+  - name: CMData
+    type: hdb
+    path: CMData
+    requires:
+      - name: hdi_CMData
+  - name: MSBusinessLogic
+    type: nodejs
+    path: MSBusinessLogic
+    provides:
+      - name: MSBusinessLogic_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: CMData
+      - name: hdi_CMData
 resources:
- - name: hdi_CMData
-   properties:
-      hdi-container-name: ${service-name}
-   type: com.sap.xs.hdi-container
+  - name: hdi_CMData
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
