@@ -1,0 +1,26 @@
+namespace hxe_xsa_app.CMData;
+
+@OData.publish: true
+
+context CustomerDetails {
+	entity Customer {
+		key	KUNNR: String(10) not null;		/* Customer Number */
+			LAND1: String(10);				/* Country Key */
+			NAME1: String(35);				/* Customer First name */
+			ORT01: String(35);				/* City */
+			PSTLZ: String(10);				/* Postal Code */
+			REGIO: String(3);				/* Region */
+			TELF1: String(16);				/* First Telephone number */
+			TELFX: String(31);				/* Fax number */
+	};
+	entity Orders {
+		key ZBUKR: String(4) not null;		/* Company Code */
+		key KUNNR: String(10);				/* Customer Number */
+		key VBLNR: String(10);				/* Order Number */
+			RBETR: Decimal(13,2);			/* Total Amount */
+			WAERS: String(5);				/* Currency Key */
+			XREF1: String(10);				/* Reference Text */
+			GJAHR: String(4);				/* Fiscal Year */
+			AEDAT: LocalDate;				/* Created Date */
+	};
+};
